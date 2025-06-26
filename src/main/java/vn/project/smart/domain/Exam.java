@@ -9,6 +9,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -35,6 +37,8 @@ public class Exam {
 
     private int level;
 
+    private boolean active;
+
     private String logo;
 
     private Instant createdAt;
@@ -45,6 +49,9 @@ public class Exam {
 
     private String updatedBy;
 
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
     // @OneToMany(mappedBy = "exam", fetch = FetchType.LAZY)
     // @JsonIgnore
     // List<Question> questions;

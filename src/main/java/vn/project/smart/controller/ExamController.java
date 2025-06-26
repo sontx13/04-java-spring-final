@@ -1,7 +1,6 @@
 package vn.project.smart.controller;
 
 import java.util.Optional;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -14,54 +13,73 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.turkraft.springfilter.boot.Filter;
-
 import jakarta.validation.Valid;
 import vn.project.smart.domain.Exam;
 import vn.project.smart.domain.response.ResultPaginationDTO;
+import vn.project.smart.domain.response.exam.ResCreateExamDTO;
+import vn.project.smart.domain.response.exam.ResUpdateExamDTO;
 import vn.project.smart.service.ExamService;
 import vn.project.smart.util.annotation.ApiMessage;
+import vn.project.smart.util.error.IdInvalidException;
 
 @RestController
 @RequestMapping("/api/v1")
 public class ExamController {
-    private final ExamService ExamService;
 
-    public ExamController(ExamService ExamService) {
-        this.ExamService = ExamService;
+    private final ExamService examService;
+
+    public ExamController(ExamService examService) {
+        this.examService = examService;
     }
 
     @PostMapping("/exams")
-    public ResponseEntity<?> createExam(@Valid @RequestBody Exam reqExam) {
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.ExamService.handleCreateExam(reqExam));
-    }
-
-    @GetMapping("/exams")
-    @ApiMessage("Fetch exams")
-    public ResponseEntity<ResultPaginationDTO> getExam(
-            @Filter Specification<Exam> spec, Pageable pageable) {
-
-        return ResponseEntity.ok(this.ExamService.handleGetExam(spec, pageable));
+    @ApiMessage("Create a exam")
+    public ResponseEntity<ResCreateExamDTO> create(@Valid @RequestBody Exam exam) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(this.examService.create(exam));
     }
 
     @PutMapping("/exams")
-    public ResponseEntity<Exam> updateExam(@Valid @RequestBody Exam reqExam) {
-        Exam updatedExam = this.ExamService.handleUpdateExam(reqExam);
-        return ResponseEntity.ok(updatedExam);
+    @ApiMessage("Update a exam")
+    public ResponseEntity<ResUpdateExamDTO> update(@Valid @RequestBody Exam exam) throws IdInvalidException {
+        Optional<Exam> currentExam = this.examService.fetchExamById(exam.getId());
+        if (!currentExam.isPresent()) {
+            throw new IdInvalidException("Exam not found");
+        }
+
+        return ResponseEntity.ok()
+                .body(this.examService.update(exam, currentExam.get()));
     }
 
     @DeleteMapping("/exams/{id}")
-    public ResponseEntity<Void> deleteExam(@PathVariable("id") long id) {
-        this.ExamService.handleDeleteExam(id);
-        return ResponseEntity.ok(null);
+    @ApiMessage("Delete a exam by id")
+    public ResponseEntity<Void> delete(@PathVariable("id") long id) throws IdInvalidException {
+        Optional<Exam> currentExam = this.examService.fetchExamById(id);
+        if (!currentExam.isPresent()) {
+            throw new IdInvalidException("Exam not found");
+        }
+        this.examService.delete(id);
+        return ResponseEntity.ok().body(null);
     }
 
     @GetMapping("/exams/{id}")
-    @ApiMessage("fetch Exam by id")
-    public ResponseEntity<Exam> fetchExamById(@PathVariable("id") long id) {
-        Optional<Exam> cOptional = this.ExamService.findById(id);
-        return ResponseEntity.ok().body(cOptional.get());
+    @ApiMessage("Get a exam by id")
+    public ResponseEntity<Exam> getExam(@PathVariable("id") long id) throws IdInvalidException {
+        Optional<Exam> currentExam = this.examService.fetchExamById(id);
+        if (!currentExam.isPresent()) {
+            throw new IdInvalidException("Exam not found");
+        }
+
+        return ResponseEntity.ok().body(currentExam.get());
+    }
+
+    @GetMapping("/exams")
+    @ApiMessage("Get exam with pagination")
+    public ResponseEntity<ResultPaginationDTO> getAllExam(
+            @Filter Specification<Exam> spec,
+            Pageable pageable) {
+
+        return ResponseEntity.ok().body(this.examService.fetchAll(spec, pageable));
     }
 }
