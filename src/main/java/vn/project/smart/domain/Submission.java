@@ -11,7 +11,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import vn.project.smart.util.SecurityUtil;
@@ -25,15 +24,6 @@ public class Submission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "exam_id không được để trống")
-    private long exam_id;
-
-    @NotBlank(message = "question_id không được để trống")
-    private long question_id;
-
-    @NotBlank(message = "answers_id không được để trống")
-    private long answers_id;
-
     private Instant createdAt;
     private Instant updatedAt;
 
@@ -43,6 +33,22 @@ public class Submission {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    @ManyToOne
+    @JoinColumn(name = "exam_id")
+    private Exam exam;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
+
+    @ManyToOne
+    @JoinColumn(name = "answers_id")
+    private Answer answer;
 
     @PrePersist
     public void handleBeforeCreate() {

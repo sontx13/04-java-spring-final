@@ -1,5 +1,7 @@
 package vn.project.smart.controller;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -79,5 +81,17 @@ public class PermissionController {
             @Filter Specification<Permission> spec, Pageable pageable) {
 
         return ResponseEntity.ok(this.permissionService.getPermissions(spec, pageable));
+    }
+    
+    
+    @GetMapping("/permissions/{id}")
+    @ApiMessage("Get a exam by id")
+    public ResponseEntity<Permission> getPermission(@PathVariable("id") long id) throws IdInvalidException {
+        Optional<Permission> currentPermission = this.permissionService.fetchPermissionById(id);
+        if (!currentPermission.isPresent()) {
+            throw new IdInvalidException("Permission not found");
+        }
+
+        return ResponseEntity.ok().body(currentPermission.get());
     }
 }

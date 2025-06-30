@@ -52,6 +52,7 @@ public class Exam {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
+
     // @OneToMany(mappedBy = "exam", fetch = FetchType.LAZY)
     // @JsonIgnore
     // List<Question> questions;

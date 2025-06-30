@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
 import vn.project.smart.domain.Permission;
 import vn.project.smart.domain.response.ResultPaginationDTO;
 import vn.project.smart.repository.PermissionRepository;
@@ -16,6 +17,10 @@ public class PermissionService {
 
     public PermissionService(PermissionRepository permissionRepository) {
         this.permissionRepository = permissionRepository;
+    }
+
+      public Optional<Permission> fetchPermissionById(long id) {
+        return this.permissionRepository.findById(id);
     }
 
     public boolean isPermissionExist(Permission p) {

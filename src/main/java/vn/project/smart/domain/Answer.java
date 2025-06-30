@@ -32,7 +32,6 @@ public class Answer {
     @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
     
-    @NotBlank(message = "name không được để trống")
     private boolean correct_answer;
 
     private Instant createdAt;
