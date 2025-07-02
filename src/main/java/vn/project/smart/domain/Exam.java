@@ -37,6 +37,12 @@ public class Exam {
 
     private int level;
 
+    private int time_minutes;
+
+    private int total_score;
+
+    private int total_question;
+
     private boolean active;
 
     private String logo;

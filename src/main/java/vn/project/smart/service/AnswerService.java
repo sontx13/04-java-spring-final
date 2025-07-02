@@ -56,7 +56,7 @@ public class AnswerService {
         dto.setCorrect_answer(currentAnswer.isCorrect_answer());
         dto.setCreatedAt(currentAnswer.getCreatedAt());
         dto.setCreatedBy(currentAnswer.getCreatedBy());
-
+        dto.setScore(currentAnswer.getScore());
         return dto;
     }
 
@@ -84,7 +84,7 @@ public class AnswerService {
         dto.setCorrect_answer(currentAnswer.isCorrect_answer());
         dto.setUpdatedAt(currentAnswer.getUpdatedAt());
         dto.setUpdatedBy(currentAnswer.getUpdatedBy());
-
+        dto.setScore(currentAnswer.getScore());
         return dto;
     }
 

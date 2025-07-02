@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class ResCreateSubmissionDTO {
     private long id;
+    private int score;
     private Instant createdAt;
     private String createdBy;
 }

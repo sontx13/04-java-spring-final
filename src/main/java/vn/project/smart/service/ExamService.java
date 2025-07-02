@@ -54,6 +54,9 @@ public class ExamService {
         dto.setLogo(currentExam.getLogo());
         dto.setLevel(currentExam.getLevel());
         dto.setActive(currentExam.isActive());
+        dto.setTime_minutes(currentExam.getTime_minutes());
+        dto.setTotal_question(currentExam.getTotal_question());
+        dto.setTotal_score(currentExam.getTotal_score());
         dto.setCreatedAt(currentExam.getCreatedAt());
         dto.setCreatedBy(currentExam.getCreatedBy());
 
@@ -90,7 +93,9 @@ public class ExamService {
         dto.setActive(currentExam.isActive());
         dto.setUpdatedAt(currentExam.getUpdatedAt());
         dto.setUpdatedBy(currentExam.getUpdatedBy());
-
+        dto.setTime_minutes(currentExam.getTime_minutes());
+        dto.setTotal_question(currentExam.getTotal_question());
+        dto.setTotal_score(currentExam.getTotal_score());
         return dto;
     }
 

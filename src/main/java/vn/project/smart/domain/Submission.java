@@ -24,6 +24,8 @@ public class Submission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private int score;
+
     private Instant createdAt;
     private Instant updatedAt;
 

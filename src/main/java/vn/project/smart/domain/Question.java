@@ -37,6 +37,10 @@ public class Question {
 
     private int type;
 
+    private int total_answers;
+
+    private int score;
+
     private boolean active;
 
     private Instant createdAt;

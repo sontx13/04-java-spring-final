@@ -34,6 +34,8 @@ public class Answer {
     
     private boolean correct_answer;
 
+    private int score;
+
     private Instant createdAt;
 
     private Instant updatedAt;

@@ -10,6 +10,9 @@ import lombok.Setter;
 public class ResCreateExamDTO {
     private long id;
     private String name;
+    private int time_minutes;
+    private int total_score;
+    private int total_question;
     private String description;
     private int level;
     private String logo;

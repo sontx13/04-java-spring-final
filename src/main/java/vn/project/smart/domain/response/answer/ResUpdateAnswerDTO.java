@@ -11,7 +11,7 @@ public class ResUpdateAnswerDTO {
     private long id;
     private String description;
     private boolean correct_answer;
-
+    private int score;
     private Instant updatedAt;
     private String updatedBy;
 }

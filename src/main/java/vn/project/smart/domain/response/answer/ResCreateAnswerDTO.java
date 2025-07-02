@@ -11,7 +11,7 @@ public class ResCreateAnswerDTO {
     private long id;
     private String description;
     private boolean correct_answer;
-
+    private int score;
     private Instant createdAt;
     private String createdBy;
 }

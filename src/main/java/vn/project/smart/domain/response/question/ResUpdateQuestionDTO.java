@@ -10,6 +10,8 @@ import lombok.Setter;
 public class ResUpdateQuestionDTO {
     private long id;
     private int type;
+    private int total_answers;
+    private int score;
     private String description;
     private String image;
     private boolean active;

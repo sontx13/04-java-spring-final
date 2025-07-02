@@ -1,8 +1,6 @@
 package vn.project.smart.service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import vn.project.smart.domain.Exam;
 import vn.project.smart.domain.Question;
-import vn.project.smart.domain.Skill;
 import vn.project.smart.domain.response.ResultPaginationDTO;
 import vn.project.smart.domain.response.question.ResCreateQuestionDTO;
 import vn.project.smart.domain.response.question.ResUpdateQuestionDTO;
@@ -58,7 +55,9 @@ public class QuestionService {
         dto.setActive(currentQuestion.isActive());
         dto.setCreatedAt(currentQuestion.getCreatedAt());
         dto.setCreatedBy(currentQuestion.getCreatedBy());
-
+        dto.setTotal_answers(currentQuestion.getTotal_answers());
+        dto.setScore(currentQuestion.getScore());
+       
         return dto;
     }
 
@@ -91,7 +90,8 @@ public class QuestionService {
         dto.setActive(currentQuestion.isActive());
         dto.setUpdatedAt(currentQuestion.getUpdatedAt());
         dto.setUpdatedBy(currentQuestion.getUpdatedBy());
-
+        dto.setTotal_answers(currentQuestion.getTotal_answers());
+        dto.setScore(currentQuestion.getScore());
         return dto;
     }
 
