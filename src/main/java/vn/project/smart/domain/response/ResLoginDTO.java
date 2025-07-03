@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vn.project.smart.domain.Company;
 import vn.project.smart.domain.Role;
 
 @Getter
@@ -23,7 +24,10 @@ public class ResLoginDTO {
         private long id;
         private String email;
         private String name;
+        private String phone;
         private Role role;
+        private Company company;
+        private boolean is_admin;
     }
 
     @Getter

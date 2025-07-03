@@ -15,6 +15,8 @@ public class ResCreateUserDTO {
     private GenderEnum gender;
     private String address;
     private int age;
+    private boolean is_admin;
+    private String phone;
     private Instant createdAt;
     private CompanyUser company;
 

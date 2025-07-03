@@ -55,6 +55,9 @@ public class User {
     private String createdBy;
     private String updatedBy;
 
+    private boolean is_admin;
+    private String phone;
+
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
