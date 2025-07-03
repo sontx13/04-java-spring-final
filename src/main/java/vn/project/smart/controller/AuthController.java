@@ -119,7 +119,9 @@ public class AuthController {
             userLogin.setEmail(currentUserDB.getEmail());
             userLogin.setName(currentUserDB.getName());
             userLogin.setRole(currentUserDB.getRole());
-
+            userLogin.setPhone(currentUserDB.getPhone());
+            userLogin.setCompany(currentUserDB.getCompany());
+            userLogin.set_admin(currentUserDB.is_admin());
             userGetAccount.setUser(userLogin);
         }
 
