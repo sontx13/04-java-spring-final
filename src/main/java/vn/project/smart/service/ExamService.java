@@ -79,6 +79,9 @@ public class ExamService {
         examInDB.setLogo(j.getLogo());
         examInDB.setLevel(j.getLevel());
         examInDB.setActive(j.isActive());
+        examInDB.setTime_minutes(j.getTime_minutes());
+        examInDB.setTotal_question(j.getTotal_question());
+        examInDB.setTotal_score(j.getTotal_score());
 
         // update exam
         Exam currentExam = this.examRepository.save(examInDB);
