@@ -25,5 +25,6 @@ public class ResUpdateUserDTO {
     public static class CompanyUser {
         private long id;
         private String name;
+        private String logo;
     }
 }

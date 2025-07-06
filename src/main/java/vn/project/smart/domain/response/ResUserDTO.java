@@ -35,6 +35,7 @@ public class ResUserDTO {
     public static class CompanyUser {
         private long id;
         private String name;
+        private String logo;
     }
 
     @Getter

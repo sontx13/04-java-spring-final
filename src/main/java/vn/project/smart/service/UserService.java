@@ -129,10 +129,13 @@ public class UserService {
         res.setCreatedAt(user.getCreatedAt());
         res.setGender(user.getGender());
         res.setAddress(user.getAddress());
+        res.setPhone(user.getPhone());
+        res.set_admin(user.is_admin());
 
         if (user.getCompany() != null) {
             com.setId(user.getCompany().getId());
             com.setName(user.getCompany().getName());
+            com.setLogo(user.getCompany().getLogo());
             res.setCompany(com);
         }
         return res;
@@ -144,6 +147,7 @@ public class UserService {
         if (user.getCompany() != null) {
             com.setId(user.getCompany().getId());
             com.setName(user.getCompany().getName());
+            com.setLogo(user.getCompany().getLogo());
             res.setCompany(com);
         }
 
@@ -153,6 +157,8 @@ public class UserService {
         res.setUpdatedAt(user.getUpdatedAt());
         res.setGender(user.getGender());
         res.setAddress(user.getAddress());
+        res.setPhone(user.getPhone());
+        res.set_admin(user.is_admin());
         return res;
     }
 
@@ -163,6 +169,7 @@ public class UserService {
         if (user.getCompany() != null) {
             com.setId(user.getCompany().getId());
             com.setName(user.getCompany().getName());
+            com.setLogo(user.getCompany().getLogo());
             res.setCompany(com);
         }
 
@@ -180,6 +187,8 @@ public class UserService {
         res.setCreatedAt(user.getCreatedAt());
         res.setGender(user.getGender());
         res.setAddress(user.getAddress());
+        res.setPhone(user.getPhone());
+        res.set_admin(user.is_admin());
         return res;
     }
 
